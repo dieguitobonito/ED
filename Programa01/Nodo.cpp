@@ -2,13 +2,12 @@
 
 // Constructor predeterminado
 Nodo::Nodo(){
-    niño.nombre = "";
-    niño.edad = 0;
+    cadena = "";
     sig = nullptr;
 
 }
 
-Nodo::Nodo(Alumno chiquillo, Nodo* sig){
-    this->niño = chiquillo;
+Nodo::Nodo(string cadena, Nodo* sig){
+    this->cadena = nombre;
     this->sig = sig;
 }

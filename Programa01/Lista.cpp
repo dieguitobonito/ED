@@ -13,41 +13,9 @@ Lista::Lista(Nodo* sigPos){
 ----- Métodos -----
 */
 
-void Lista::insertarInicio(Alumno al){
-	Nodo* aux = new Nodo(al, nullptr);
-	
-	if(h == nullptr){
-		h = aux;
-	}
-	else{
-		aux->sig = h;
-		h = aux;
-	}
-	cout << "Alumno añadido" << endl;
-}
-
-void Lista::insertarFinal(Alumno al){
-	Nodo* auxFinal = new Nodo(al, nullptr);
-
-	// No hay ningún nodo
-	if(h == nullptr){
-		h = auxFinal;
-	}
-	else{
-		// A partir de un nodo
-		Nodo* aux = h;
-		while(aux->sig != nullptr){
-			aux = aux->sig;
-		}
-		aux->sig = auxFinal;
-	}
-}
-
-// Implementar
-void Lista::insertarPos(Alumno al, int d){
-	cout << "Entré a la función" << endl;
+void Lista::insertar(string s, int d){
 	Nodo* aux = h;
-	Nodo* insertable = new Nodo(al, nullptr);
+	Nodo* insertable = new Nodo(s, nullptr);
 	Nodo* ant = nullptr;
 	int posible = 0;
 	int cantidad = 0;
@@ -82,7 +50,7 @@ void Lista::insertarPos(Alumno al, int d){
 				insertable->sig = ant->sig;
 				ant->sig = insertable;
 			}
-			cout << "Alumno insertado" << endl;
+			cout << "Nodo insertado" << endl;
 		}
 		else{
 			cout << "Valor fuera del rango de la lista" << endl;
@@ -90,9 +58,7 @@ void Lista::insertarPos(Alumno al, int d){
 	}
 }
 
-
-// Recibir alumno y comparar ambos datos
-void Lista::eliminar(Alumno al){
+void Lista::eliminar(string s){
 	if(h == nullptr){
 		cout << "Lista inexistente" << endl;
 	}
@@ -106,7 +72,7 @@ void Lista::eliminar(Alumno al){
 		bool valoresEncontrados = false;
 
 		while(aux && !valoresEncontrados){
-			if(aux->niño.nombre == al.nombre && aux->niño.edad == al.edad){
+			if(aux->nombre == s){
 				valoresEncontrados = true;
 			}
 			else{
@@ -115,7 +81,7 @@ void Lista::eliminar(Alumno al){
 			}
 		}
 		if(!aux && !valoresEncontrados){
-			cout << "No se encontró el alumno" << endl;
+			cout << "No se encontró el nodo" << endl;
 		}
 		// Está al inicio de la lista
 		else if(aux == h){
@@ -138,7 +104,147 @@ void Lista::eliminar(Alumno al){
 	}
 }
 
-void Lista::eliminarTodo(void){
+void Lista::buscar(string s){
+	Nodo* comp = new Nodo(s, nullptr);
+	Nodo* aux = h;
+	bool encontrado = false;	
+
+	if(h == nullptr){
+		cout << "¡No hay lista por la cual buscar!" << endl;
+	}
+	else{
+		while(aux && !encontrado){
+			if(aux->cadena == s){
+				encontrado = true;
+			}
+			aux = aux->sig;
+		}
+		if(aux && encontrado){
+			cout << "Nodo encontrado en dirección: " << aux << endl;
+		}
+		else{
+			cout << "No se encontró nodo" << endl;
+		}
+	}
+}
+
+void Lista::vacía(void){
+	if(h == nullptr){
+		cout << "La lista está vacía" << endl;
+	}
+	else{
+		cout << "Lista no vacía" << endl;
+	}
+}
+
+void Lista::inicializa(void){
+	h = new Nodo();
+	cout << "Lista inicializada" << endl;
+}
+
+void Lista::primero(void){
+	if(!h){
+		cout << "¡Ni siquiera existe lista!" << endl;
+	}
+	else{
+		cout << "El primer nodo es: ";
+		cout << h->cadena << endl;
+	}
+}
+
+void Lista::ultimo(void){
+	if(!h){
+		cout << "Lista inexistente" << endl;
+	}
+	else{
+		Nodo* aux = h;
+		while(aux->sig){
+			aux = aux->sig;
+		}
+
+		cout << "El último nodo es: ";
+		cout << aux->niño.nombre << ", " << aux->niño.edad << endl;
+	}
+}
+
+void Lista::anterior(string s){
+	Nodo* comp = new Nodo(s, nullptr);
+	Nodo* aux = h;
+	Nodo* auxAnt = nullptr;
+	bool encontrado = false;	
+
+	if(h == nullptr){
+		cout << "¡No hay lista por la cual buscar!" << endl;
+	}
+	else{
+		while(aux && !encontrado){
+			if(aux->cadena == s){
+				encontrado = true;
+			}
+			else{
+				auxAnt = aux;
+				aux = aux->sig;
+			}
+		}
+		if(!auxAnt && encontrado){
+			comp = aux->sig;
+			cout << "Del nodo con el dato " << aux->cadena << " no hay nodo anterior" << endl;
+		}
+		else if(auxAnt->sig && encontrado){
+			cout << "Antes del nodo con el dato " << aux->cadena << " está el nodo con el dato " << auxAnt->cadena << endl;
+		}
+		else{
+			cout << "Nodo no encontrado" << endl;
+		}
+	}
+}
+
+void Lista::siguiente(string s){
+	Nodo* comp = new Nodo(s, nullptr);
+	Nodo* aux = h;
+	bool encontrado = false;	
+
+	if(h == nullptr){
+		cout << "¡No hay lista por la cual buscar!" << endl;
+	}
+	else{
+		while(aux && !encontrado){
+			if(aux->cadena == s){
+				encontrado = true;
+			}
+			else{
+				aux = aux->sig;
+			}
+		}
+		if(aux->sig && encontrado){
+			comp = aux->sig;
+			cout << "Del nodo con el dato:  " << aux->cadena << " está el nodo con el dato " << comp->cadena << endl;
+		}
+		else if(!aux->sig && encontrado){
+			cout << "Del nodo con el dato " << aux->cadena << " no hay siguiente nodo" << endl;
+		}
+		else{
+			cout << "Nodo no encontrado" << endl;
+		}
+	}
+}
+
+int Lista::tamaño(void){
+	Nodo* aux = h;
+	int cantidad = 0;
+	if(h == nullptr){
+		cout << "Lista inexistente" << endl;
+	}
+	else{
+		while(aux != nullptr){
+			aux = aux->sig;
+			cantidad++;
+		}
+		cout << "Hay " << cantidad << " nodo(s) en la lista" << endl;
+	}
+}
+
+void Lista::vaciar(void){
 	if(h == nullptr){
 		cout << "No hay lista que eliminar" << endl;
 	}
@@ -155,144 +261,16 @@ void Lista::eliminarTodo(void){
 	}
 }
 
-void Lista::buscar(Alumno al){
-	Nodo* comp = new Nodo(al, nullptr);
-	Nodo* aux = h;
-	bool encontrado = false;	
 
-	if(h == nullptr){
-		cout << "¡No hay lista por la cual buscar!" << endl;
-	}
-	else{
-		while(aux && !encontrado){
-			if(aux->niño.nombre == comp->niño.nombre && aux->niño.edad == comp->niño.edad){
-				encontrado = true;
-			}
-			aux = aux->sig;
-		}
-		if(aux && encontrado){
-			cout << "Alumno encontrado en dirección: " << aux << endl;
-		}
-		else{
-			cout << "Alumno no encontrado" << endl;
-		}
-	}
-}
 
-void Lista::inicializa(void){
-	h = new Nodo();
-	cout << "Lista inicializada" << endl;
-}
 
-void Lista::vacia(void){
-	if(h == nullptr){
-		cout << "La lista está vacía" << endl;
-	}
-	else{
-		cout << "Lista no vacía" << endl;
-	}
-}
 
-void Lista::primero(void){
-	if(!h){
-		cout << "¡Ni siquiera existe lista!" << endl;
-	}
-	else{
-		cout << "El primero de la lista es: ";
-		cout << h->niño.nombre << ", " << h->niño.edad << endl;
-	}
-}
 
-void Lista::ultimo(void){
-	if(!h){
-		cout << "Lista inexistente" << endl;
-	}
-	else{
-		Nodo* aux = h;
-		while(aux->sig){
-			aux = aux->sig;
-		}
-		cout << "El último de la lista es: ";
-		cout << aux->niño.nombre << ", " << aux->niño.edad << endl;
-	}
-}
 
-void Lista::tamaño(void){
-	Nodo* aux = h;
-	int cantidad = 0;
-	if(h == nullptr){
-		cout << "Lista inexistente" << endl;
-	}
-	else{
-		while(aux != nullptr){
-			aux = aux->sig;
-			cantidad++;
-		}
-		cout << "Hay " << cantidad << " elemento(s) en la lista" << endl;
-	}
-}
 
-void Lista::siguiente(Alumno al){
-	Nodo* comp = new Nodo(al, nullptr);
-	Nodo* aux = h;
-	bool encontrado = false;	
 
-	if(h == nullptr){
-		cout << "¡No hay lista por la cual buscar!" << endl;
-	}
-	else{
-		while(aux && !encontrado){
-			if(aux->niño.nombre == comp->niño.nombre && aux->niño.edad == comp->niño.edad){
-				encontrado = true;
-			}
-			else{
-				aux = aux->sig;
-			}
-		}
-		if(aux->sig && encontrado){
-			comp = aux->sig;
-			cout << "De " << aux->niño.nombre << " sigue " << comp->niño.nombre << endl;
-		}
-		else if(!aux->sig && encontrado){
-			cout << "De " << aux->niño.nombre << " no sigue nadie" << endl;
-		}
-		else{
-			cout << "Alumno no encontrado" << endl;
-		}
-	}
-}
 
-void Lista::anterior(Alumno al){
-	Nodo* comp = new Nodo(al, nullptr);
-	Nodo* aux = h;
-	Nodo* auxAnt = nullptr;
-	bool encontrado = false;	
 
-	if(h == nullptr){
-		cout << "¡No hay lista por la cual buscar!" << endl;
-	}
-	else{
-		while(aux && !encontrado){
-			if(aux->niño.nombre == comp->niño.nombre && aux->niño.edad == comp->niño.edad){
-				encontrado = true;
-			}
-			else{
-				auxAnt = aux;
-				aux = aux->sig;
-			}
-		}
-		if(!auxAnt && encontrado){
-			comp = aux->sig;
-			cout << "De " << aux->niño.nombre << " no hay nadie antes" << endl;
-		}
-		else if(auxAnt->sig && encontrado){
-			cout << "Antes de " << aux->niño.nombre << " está " << auxAnt->niño.nombre << endl;
-		}
-		else{
-			cout << "Alumno no encontrado" << endl;
-		}
-	}
-}
 
 void Lista::mostrarTodo(void){
 	Nodo* aux = h;

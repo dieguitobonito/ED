@@ -6,61 +6,43 @@
 
 using namespace std;
 void menu(){
-	cout << "--- Lista escolar ---" << endl;
+	cout << "--- Lista ---" << endl;
 	int opc = 0;
 	int valor;
 	Lista principal;
 
-	// Necesitas crearla una vez todos los datos estén juntos
-	//Alumno niño;
-	
-	string name;
-	int age;
+	string cad;
 	int posicion;
 
-	while(opc != 15){
-		cout << "\n1. Añadir al inicio" << endl;
-		cout << "2. Insertar al final" << endl;
-		cout << "3. Insertar en posición" << endl;
-		cout << "4. Eliminar" << endl;
-		cout << "5. Eliminar toda la lista" << endl;
-		cout << "6. Buscar" << endl;
-		cout << "7. Inicializar" << endl;
-		cout << "8. Verificar si está vacía" << endl;
-		cout << "9. Imprimir el primer alumno" << endl;
-		cout << "10. Imprimir el último alumno" << endl;
-		cout << "11. Tamaño de la lista" << endl;
-		cout << "12. Imprimir el siguiente alumno" << endl;
-		cout << "13. Imprimir el alumno anterior" << endl;
-		cout << "14. Mostrar toda la lista" << endl;
-		cout << "15. Salir" << endl;
+	while(opc != 13){
+		cout << "1. Insertar" << endl;
+		cout << "2. Eliminar" << endl;
+		cout << "3. Buscar" << endl;
+		cout << "4. Verificar si la lista está vacía" << endl;
+		cout << "5. Inicializar la lista" << endl;
+		cout << "6. Imprimir el primer nodo" << endl;
+		cout << "7. Imprimir el último nodo" << endl;
+		cout << "8. Imprimir el nodo anterior" << endl;
+		cout << "9. Imprimir el nodo siguiente" << endl;
+		cout << "10. Tamaño de la lista" << endl;
+		cout << "11. Eliminar toda la lista" << endl;
+		cout << "12. Mostrar toda la lista" << endl;
+		cout << "13. Salir" << endl;
 		cout << ": ";
 		cin >> opc;
 		cout << endl;
 	
 		switch(opc){
-			// Añadir al inicio
 			case 1:{
-				cout << "¿Cómo se llama el alumno?\n: ";
-				cin >> name;
-				cout << "¿Cuántos años tiene?\n: ";
-				cin >> age;
-
-				// Llamando al constructor a la hora de crear la variable, todo de golpe
-				Alumno niño(name, age);	
-				// Recibe alumno, no nodo
-				principal.insertarInicio(niño);
+				cout << "Inserta cadena\n: ";
+				cin >> cad;
+				principal.insertar(cad);
 				break;
 			}
-			// Añadir al final
 			case 2:{	
-				cout << "¿Cómo se llama el alumno?\n: ";
-				cin >> name;
-				cout << "¿Cuántos años tiene?\n: ";
-				cin >> age;
-
-				Alumno niño(name, age);
-				principal.insertarFinal(niño);
+				cout << "¿Qué dato tiene el nodo a eliminar?\n: ";
+				cin >> cad;
+				principal.insertarFinal(cad);
 				break;
 			}
 			case 3:{
