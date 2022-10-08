@@ -9,11 +9,19 @@ std::string mNombre = "";
 std::string mRaza = "";
 int mID = 0;
 int opcion = 0;
-ListaDoble ld();
+unsigned int pos = 0;
+ListaDoble ld;
+bool vacia = true;
 
+void pedirDatos(void){
+	std::cout << "Inserte nombre del animal\n: ";
+	std::cin >> mNombre;
+	std::cout << "Inserte raza del animal\n: ";
+	std::cin >> mRaza;
+}
 
 void menu(void){
-	std::cout << "--- Zoológico de Guadalajara ---\n\n";
+	std::cout << "--- Zoológico de Guadalajara ---\n";
 
 	while(opcion != 13){
 		std::cout << "\n1. insertar\n";
@@ -33,9 +41,24 @@ void menu(void){
 		std::cin >> opcion;
 
 		switch(opcion){
-			case 1:
-				std::cout << "Hola2";
+			case 1:{
+				pedirDatos();
+				Animal esp(mNombre, mRaza, mID);
+				if(vacia){
+					// Aquí pos es 0
+					ld.insertar(esp, pos);
+				}else{
+					std::cout << "Inserte posición\n: ";
+					std::cin >> pos;
+					ld.insertar(esp, pos);
+				}
 				break;
+			}
+			case 11:{
+				ld.eliminarTodo();
+				pos = 0;
+				break;
+			}
 			default:
 				std::cout << "Opción inválida\n";
 		}
