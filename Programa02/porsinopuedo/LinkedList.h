@@ -8,19 +8,20 @@ class LinkedList{
 		LinkedList();
 		void removeFront(void);
 
-		void addFront(Alumno);
-		void addNode(Alumno, unsigned int);
+		void addFront(Animal);
+		void addNode(Animal, int);
 
-		void deleteThis(string, unsigned int);
+		void deleteThisID(int);
+		void deleteThisName(string, string);
 		void deleteAll(void);
-		Node* find(string, unsigned int);
+		Node* find(string, int);
 		void initialize(void);
 		bool isEmpty(void);
 		void getFront(void);
 		void getBack(void);
-		unsigned int size(void);
-		void nextNode(string, unsigned int);
-		void prevNode(string, unsigned int);
+		int size(void);
+		void nextNode(string, int);
+		void prevNode(string, int);
 		void printForward(void);
 		void printReverse(void);
 	private:

@@ -1,4 +1,3 @@
-// El orden de los headers importa?
 #include "Node.h"
 #include "LinkedList.h"
 
@@ -21,7 +20,7 @@ void LinkedList::getFront(){
 	}else{
 		cout << "\nEl primero es: ";
 		cout << header->next->data.name << ", ";
-		cout << header->next->data.age << "\n" << endl;
+		cout << header->next->data.breed << "\n" << endl;
 	}
 }
 
@@ -32,11 +31,11 @@ void LinkedList::getBack(){
 	}else{
 		cout << "El último es: ";
 		cout << trailer->prev->data.name << ", ";
-		cout << trailer->prev->data.age << endl;
+		cout << trailer->prev->data.breed << endl;
 	}
 }
 
-void LinkedList::addFront(Alumno a){
+void LinkedList::addFront(Animal a){
 	Node* nd = new Node(a, nullptr, nullptr);
 
 	nd->prev = header;
@@ -58,11 +57,11 @@ void LinkedList::printReverse(){
 	// último dato
 	Node* tmp = trailer->prev;
 
-	unsigned int count = size();
+	int count = size();
 	cout << "\n";
 	while(tmp != header){
 		cout << count << ".- ";
-		cout << tmp->data.name << ", " << tmp->data.age << endl;
+		cout << tmp->data.name << ", " << tmp->data.breed << endl;
 		tmp = tmp->prev;
 		count--;
 	}
@@ -75,11 +74,11 @@ void LinkedList::printForward(){
 	Node* tmp = header->next;
 
 	cout << "\n";
-	unsigned int count = 0;
+	int count = 0;
 	while(tmp != trailer){
 		count++;
 		cout << count << ".- ";
-		cout << tmp->data.name << ", " << tmp->data.age << endl;
+		cout << tmp->data.name << ", " << tmp->data.breed << endl;
 		tmp = tmp->next;
 	}
 	cout << "\n";
@@ -89,7 +88,7 @@ bool LinkedList::isEmpty(void){
 	return (header->next == trailer);
 }
 
-Node* LinkedList::find(string n, unsigned int a){
+Node* LinkedList::find(string n, string a){
 	Node* aux;
 	aux = header;
 	bool found = false;
@@ -98,7 +97,7 @@ Node* LinkedList::find(string n, unsigned int a){
 		return nullptr;
 	}else{
 		while(aux != nullptr && found == false){
-			if(aux->data.name == n && aux->data.age == a){
+			if(aux->data.name == n && aux->data.breed == a){
 				found = true;
 			}else{
 				aux = aux->next;
@@ -108,15 +107,15 @@ Node* LinkedList::find(string n, unsigned int a){
 	return aux;
 }
 
-void LinkedList::deleteThis(string n, unsigned int a){
+void LinkedList::deleteThis(string n, string b){
 	Node* aux = find(n, a);
 	if(aux){
 		aux->prev->next = aux->next;
 		aux->next->prev = aux->prev;
 		delete aux;
-		cout << "Alumno eliminado\n" << endl;
+		cout << "Animal eliminado\n" << endl;
 	}else{
-		cout << "Alumno no encontrado\n" << endl;
+		cout << "Animal no encontrado\n" << endl;
 	}
 }
 
@@ -142,8 +141,8 @@ void LinkedList::initialize(void){
 	}
 }
 
-unsigned int LinkedList::size(void){
-	unsigned int cant = 0;
+int LinkedList::size(void){
+	int cant = 0;
 	if(!isEmpty()){
 		Node* aux = header->next;
 		while(aux != trailer){
@@ -154,43 +153,43 @@ unsigned int LinkedList::size(void){
 	return cant;	
 }
 
-void LinkedList::nextNode(string n, unsigned int a){
+void LinkedList::nextNode(string n, string b){
 	Node* tmp = find(n, a);
 
 	// Para no acceder ilegalmente
 	if(tmp == nullptr){
-		cout << "\nAlumno no encontrado\n" << endl;
+		cout << "\nAnimal no encontrado\n" << endl;
 	}else if(tmp->next == trailer){
-		cout << "\nNo hay alumno siguiente\n" << endl;
+		cout << "\nNo hay animal siguiente\n" << endl;
 	}else{
-		cout << "\nEl alumno siguiente es " << tmp->next->data.name;
-		cout << ", " << tmp->next->data.age << endl;
+		cout << "\nEl animal siguiente es " << tmp->next->data.name;
+		cout << ", " << tmp->next->data.breed << endl;
 		cout << "\n";
 	}
 }
 
-void LinkedList::prevNode(string n, unsigned int a){
+void LinkedList::prevNode(string n, string b){
 	Node* tmp = find(n, a);
 
 	if(tmp->prev == header){
-		cout << "\nNo hay alumno anterior\n" << endl;
+		cout << "\nNo hay animal anterior\n" << endl;
 	}else{
-		cout << "\nEl alumno anterior es " << tmp->prev->data.name;
-		cout << ", " << tmp->prev->data.age << "\n" << endl;
+		cout << "\nEl animal anterior es " << tmp->prev->data.name;
+		cout << ", " << tmp->prev->data.breed << "\n" << endl;
 	}
 }
 
-void LinkedList::addNode(Alumno a, unsigned int pos){
-	unsigned int rang = pos;
+void LinkedList::addNode(Animal a, int pos){
+	int rang = pos;
 	
 	Node* nxt = header;
+	Node* nd = new Node(a, nullptr, nullptr);
+	nd->data.id = pos;
 
 	while(pos - 1 > 0){
 		pos--;
 		nxt = nxt->next;
 	}
-	
-	Node* nd = new Node(a, nullptr, nullptr);
 
 	nd->prev = nxt;
 	nd->next = nxt->next;

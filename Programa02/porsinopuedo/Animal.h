@@ -1,16 +1,17 @@
-#ifndef ALUMNO_H
-#define ALUMNO_H
+#ifndef ANIMAL_H
+#define ANIMAL_H
 
 #include <string>
 using namespace std;
 
-class Alumno{
+class Animal{
 	public:
-		Alumno();
-		Alumno(string, unsigned int);
+		Animal();
+		Animal(string, string, int);
 	private:
 		string name;
-		unsigned int age;
+		string breed;
+		int id;
 
 	friend class Node;
 	friend class LinkedList;

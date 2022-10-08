@@ -1,14 +1,14 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include "Alumno.h"
+#include "Animal.h"
 
 class Node{
 	public:
 		Node();
-		Node(Alumno, Node*, Node*);
+		Node(Animal, Node*, Node*);
 	private:
-		Alumno data;
+		Animal data;
 		Node* next;
 		Node* prev;
 

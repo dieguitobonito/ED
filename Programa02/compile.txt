@@ -1,1 +1,1 @@
-clear && g++ LinkedList.cpp Node.cpp Alumno.cpp Node.h main.cpp -o test && ./test
+clear && g++ main.cpp ListaDoble.cpp Nodo.cpp Animal.cpp -o zoo && ./zoo

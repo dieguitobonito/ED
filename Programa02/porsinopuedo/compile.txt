@@ -1,0 +1,1 @@
+clear && g++ LinkedList.cpp Node.cpp Animal.cpp main.cpp -o test && ./test
