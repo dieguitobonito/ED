@@ -11,5 +11,8 @@ class Animal{
 	public:
 		Animal();
 		Animal(std::string, std::string, int id);
+
+	friend class Nodo;
+	friend class ListaDoble;
 };
 #endif

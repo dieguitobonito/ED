@@ -6,7 +6,7 @@ Animal::Animal(){
 	ID = 0;
 }
 
-Animal::Animal(string nombre, string raza, int ID){
+Animal::Animal(std::string nombre, std::string raza, int ID){
 	this->nombre = nombre;
 	this->raza = raza;
 	this->ID = ID;

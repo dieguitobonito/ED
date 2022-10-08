@@ -1,6 +1,8 @@
 #ifndef NODO_H
 #define NODO_H
 
+#include "Animal.h"
+
 class Nodo{
 	private:
 		Animal dato;
@@ -8,7 +10,8 @@ class Nodo{
 		Nodo* ant;
 	public:
 		Nodo();
-		Nodo(Animal, Nodo*, Nodo*)
+		Nodo(Animal, Nodo*, Nodo*);
 
-	friend class ListaDoble;
+		friend class ListaDoble;
 };
+#endif

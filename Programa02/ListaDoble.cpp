@@ -7,9 +7,9 @@ ListaDoble::ListaDoble(){
 }
 
 void ListaDoble::insertar(Animal e, unsigned int pos){
-	Nodo* nd = new Nodo(e, nullptr, nullptr)
+	Nodo* nd = new Nodo(e, nullptr, nullptr);
 	Nodo* aux = cabecera;	
-	
+
 	// Para que se inserte antes
 	while(pos - 1 > 0){
 		aux = aux->sig;
@@ -118,6 +118,7 @@ bool ListaDoble::eliminarTodo(void){
 	}
 	delete cabecera;
 	delete cola;
+	return true;
 }
 
 void ListaDoble::mostrarLista(void){

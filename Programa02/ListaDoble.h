@@ -15,7 +15,7 @@ class ListaDoble{
 		void eliminar(std::string, std::string);
 		Nodo* buscar(std::string, std::string);
 		bool vacia(void);
-		bool inicializa
+		bool inicializa(void);
 		Nodo* primero(void);
 		Nodo* ultimo(void);
 		Nodo* anterior(std::string, std::string);
