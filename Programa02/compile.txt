@@ -1,1 +1,0 @@
-clear && g++ main.cpp ListaDoble.cpp Nodo.cpp Animal.cpp -o zoo && ./zoo
