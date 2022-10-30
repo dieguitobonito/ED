@@ -1,6 +1,9 @@
 #ifndef DATOS_H
 #define DATOS_H
 
+#include <string>
+using namespace std;
+
 class Datos{
 	private:
 		string nombre;
@@ -8,5 +11,7 @@ class Datos{
 	public:
 		Datos();
 		Datos(string, unsigned int);
-};
 
+		friend class Lista;
+};
+#endif

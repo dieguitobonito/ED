@@ -1,6 +1,12 @@
 #include "Nodo.h"
 
-Nodo::Nodo(Datos A, Nodo* sig){
-	A();
+// Constructor predeterminado
+Nodo::Nodo(){
+	Datos();
+	sig = nullptr;
+}
+
+Nodo::Nodo(string cadena, Nodo* sig){
+	this->cadena = cadena;
 	this->sig = sig;
 }

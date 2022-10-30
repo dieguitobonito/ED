@@ -1,57 +1,62 @@
 #include <iostream>
+#include "Lista.h"
+#include "Nodo.h"
+
+#include <string>
 using namespace std;
 
 void menu(){
-	int op = 0;
-	cout << "--- Pila ---" << endl; 
-	while(op != 10){
-		cout << "1.- insertar (push)" << endl;
-		cout << "2.- eliminar (pop)" << endl;
-		cout << "3.- buscar ???" << endl;
-		cout << "4.- top" << endl;
-		cout << "5.- vacia" << endl;
-		cout << "6.- inicializa" << endl;
-		cout << "7.- tamaño" << endl;
-		cout << "8.- vaciar (eliminarTodo)" << endl;
-		cout << "9.- mostrarPila" << endl;
-		cout << "10.- salir" << endl;
-		cout << ": ";
-		cin >> op;
+	int opcion = 0;
+	string menuNombre = "";
+	unsigned int menuEdad = 0;
+	Lista pila;
 
-		switch(op){
+	cout << "--- Pila ---" << endl;
+	while(opcion != 10){
+		cout << "1. insertar (push)\n"
+			"2. eliminar (pop)\n"
+			"3. buscar ???\n"
+			"4. top\n"
+			"5. vacia\n"
+			"6. inicializa\n"
+			"7. tamaño\n"
+			"8. vaciar (eliminarTodo)\n"
+			"9. mostrarPila\n"
+			"10. salir\n"
+			": ";
+		cin >> opcion;
+
+		switch(opcion){
 			case 1:{
-				cout <<
+				cout << "Inserte nombre: ";
+				cin >> menuNombre;
+				cout << "Inserte edad: ";
+				cin >> menuEdad;
+				Datos data(menuNombre, menuEdad);
+				pila.insertar(data);
 				break;
 			}
-			case 2:{
+			case 2:
 				break;
-			}
-			case 3:{
+			case 3:
 				break;
-			}
-			case 4:{
+			case 4:
 				break;
-			}
-			case 5:{
+			case 5:
 				break;
-			}
-			case 6:{
+			case 6:
 				break;
-			}
-			case 7:{
+			case 7:
 				break;
-			}
-			case 8:{
+			case 8:
 				break;
-			}
-			case 9:{
+			case 9:
 				break;
-			}
-			case 10:{
+			case 10:
+				cout << "Adiós" << endl;
 				break;
-			}
 			default:
-				cout << "Opción inválida" << endl;
+			cout << "Opción incorrecta" << endl;
 		}
 	}
 }
