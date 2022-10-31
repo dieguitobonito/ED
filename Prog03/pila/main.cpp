@@ -36,22 +36,50 @@ void menu(){
 				pila.insertar(data);
 				break;
 			}
-			case 2:
+			case 2:{
+				pila.eliminar();
 				break;
-			case 3:
+			}
+			case 3:{
+				cout << "Nombre a buscar: ";
+				cin >> menuNombre;
+				cout << "Edad: ";
+				cin >> menuEdad;
+				Nodo* direccion = pila.buscar(menuNombre, menuEdad);
+				if(direccion != nullptr)
+					cout << "Datos en " << direccion << endl;
+				else
+					cout << "No se encontró nada" << endl;
 				break;
-			case 4:
+			}
+			case 4:{
+				pila.top();
 				break;
-			case 5:
+			}
+			case 5:{
+				if(pila.vacia())
+					cout << "Lista vacía" << endl;
+				else
+					cout << "Lista no vacía" << endl;
 				break;
-			case 6:
+			}
+			case 6:{
+				pila.inicializa();
 				break;
-			case 7:
+			}
+			case 7:{
+				unsigned int cant = pila.tamaño();
+				cout << "Tamaño: " << cant << endl;
 				break;
-			case 8:
+			}
+			case 8:{
+				pila.vaciar();
 				break;
-			case 9:
+			}
+			case 9:{
+				pila.mostrarPila();
 				break;
+			}
 			case 10:
 				cout << "Adiós" << endl;
 				break;

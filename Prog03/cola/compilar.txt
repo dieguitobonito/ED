@@ -1,0 +1,1 @@
+g++ Lista.cpp main.cpp Nodo.cpp Datos.cpp -o cola && ./cola

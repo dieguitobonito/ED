@@ -46,12 +46,9 @@ void Lista::eliminar(void){
 			delete aux;
 		}
 		else{
-			while(aux->sig != t){
-				aux = aux->sig;
-			}
-			delete t;
-			aux->sig = nullptr;
-			t = aux;
+			aux = h->sig;
+			delete h;
+			h = aux;
 		}
 	}
 }
@@ -60,7 +57,7 @@ Nodo* Lista::buscar(string n, unsigned int e){
 	Nodo* aux = h;
 	bool encontrado = false;
 	if(vacia()){
-		cout << "No hay pila" << endl;
+		cout << "No hay cola" << endl;
 		return nullptr;
 	}
 	else{
@@ -77,12 +74,22 @@ Nodo* Lista::buscar(string n, unsigned int e){
 		return nullptr;
 }
 
-void Lista::top(void){
+void Lista::first(void){
 	if(vacia())
-		cout << "Pila vacía" << endl;
+		cout << "Cola vacía" << endl;
 	else
-		cout << "El tope es: " << t->A.nombre << ", " <<
-			t->A.edad << endl;
+		cout << "El primero en salir es "
+			<< h->A.nombre << ", "
+			<< h->A.edad << endl;
+}
+
+void Lista::last(void){
+	if(vacia())
+		cout << "Cola vacía" << endl;
+	else
+		cout << "El último en salir es "
+			<< t->A.nombre << ", "
+			<< t->A.edad << endl;
 }
 
 bool Lista::vacia(void){
@@ -120,7 +127,7 @@ void Lista::vaciar(void){
 	delete t;
 }
 										
-void Lista::mostrarPila(void){
+void Lista::mostrarCola(void){
 	if(vacia()){
 		cout << "No hay elementos que mostrar" << endl;
 	}

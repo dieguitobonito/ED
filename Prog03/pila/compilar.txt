@@ -1,1 +1,1 @@
-g++ Lista.cpp main.cpp Nodo.cpp -o pila && ./pila
+g++ Lista.cpp main.cpp Nodo.cpp Datos.cpp -o pila && ./pila
