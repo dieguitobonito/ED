@@ -1,13 +1,16 @@
 #include <iostream>
-#include <cstdlib>
-#include <time.h>
+#include <random>
 #include <string>
 using namespace std;
-
 #include "LinkedList.h"
-void LinkedList::nodeGeneration(){
+#include "Node.h"
+#include "Producto.h"
 
-	const char* names[127] = {
+LinkedList ld;
+
+void nodeGeneration(){
+
+	const string names[127] = {						
 	"Pet Bed",
 	"Dog Seat Cover",
 	"Multifunction Biting Toys",
@@ -141,6 +144,10 @@ void LinkedList::nodeGeneration(){
 	cout << "¿Cuántos elementos quieres generar?\n: ";
 	cin >> quantity;
 
+	string name = "";
+	float price = 0;
+	unsigned int id = 0;
+
 	bool sure = true;
 
 	if(quantity > 10000){
@@ -166,14 +173,21 @@ void LinkedList::nodeGeneration(){
 	}
 
 	if(sure){
-		srand(time(NULL));
-		for(int i = 0; i < quantity; i++){
-			string name = names[rand() * 127];
-			float price = ((float) rand()) / (float) RAND_MAX * 100;
-			unsigned int id = rand();
+		random_device semilla;
+		uniform_real_distribution<float> generarPrecio(0.0, 999.999);
+		uniform_int_distribution<unsigned int> generarID(0, 10000);
+		uniform_int_distribution<int> generarNombre(0, 127); 
 
-			Producto product(name, price, id);
-			ld.addFront(product);
+		for(int i = 0; i < quantity; i++){
+			name = names[generarNombre(semilla)];
+			price = generarPrecio(semilla);
+			id = generarID(semilla);
+
+			cout << name << endl;
+			cout << price << endl;
+			cout << id << endl;
+			cout << endl;
+
 		}
 		cout << "\nListo\n" << endl;
 	}
@@ -181,7 +195,6 @@ void LinkedList::nodeGeneration(){
 
 void menu(){
 	cout << "--- Ordenamientos ---\n\n";
-	LinkedList ld;
 
 	int opcion = 0;
 	while(opcion != 4){
@@ -193,7 +206,7 @@ void menu(){
 		cin >> opcion;
 		switch(opcion){
 			case 1:
-				ld.nodeGeneration();
+				nodeGeneration();
 				break;
 			case 2:
 				cout << "IMplementame" << endl;
@@ -217,6 +230,7 @@ void menu(){
 }
 
 int main(){
+	srand(time(NULL));
 	menu();
 	return 0;
 }

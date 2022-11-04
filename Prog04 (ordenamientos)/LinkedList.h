@@ -6,24 +6,13 @@
 class LinkedList{
 	public:
 		LinkedList();
-		void nodeGeneration(void);
-		void removeFront(void);
-
 		void addFront(Producto);
+		void removeFront(void);
+		void printForward(void);
+		void deleteAll(void);
 		void addNode(Producto, unsigned int);
 
-		void deleteThis(string, unsigned int);
-		void deleteAll(void);
-		Node* find(string, unsigned int);
-		void initialize(void);
-		bool isEmpty(void);
-		void getFront(void);
-		void getBack(void);
-		unsigned int size(void);
-		void nextNode(string, unsigned int);
-		void prevNode(string, unsigned int);
-		void printForward(void);
-		void printReverse(void);
+
 	private:
 		// Sentinels
 		Node* header;
