@@ -1,16 +1,16 @@
 #include <iostream>
 #include <random>
 #include <string>
-using namespace std;
 #include "LinkedList.h"
 #include "Node.h"
 #include "Producto.h"
+using namespace std;
 
 LinkedList ld;
 
 void nodeGeneration(){
 
-	const string names[127] = {						
+	string names[127] = {						
 	"Pet Bed",
 	"Dog Seat Cover",
 	"Multifunction Biting Toys",
@@ -173,6 +173,7 @@ void nodeGeneration(){
 	}
 
 	if(sure){
+		// Todos los generadores de números
 		random_device semilla;
 		uniform_real_distribution<float> generarPrecio(0.0, 999.999);
 		uniform_int_distribution<unsigned int> generarID(0, 10000);
@@ -183,10 +184,20 @@ void nodeGeneration(){
 			price = generarPrecio(semilla);
 			id = generarID(semilla);
 
-			cout << name << endl;
-			cout << price << endl;
-			cout << id << endl;
-			cout << endl;
+			Producto item(name, price, id);
+
+			ld.addFront(item);
+
+			// cout << item.name << endl;
+			// cout << item.price << endl;
+			// cout << item.id << endl;
+			// cout << endl;
+
+
+			// cout << name << endl;
+			// cout << price << endl;
+			// cout << id << endl;
+			// cout << endl;
 
 		}
 		cout << "\nListo\n" << endl;
@@ -198,7 +209,7 @@ void menu(){
 
 	int opcion = 0;
 	while(opcion != 4){
-		cout << "1. Crear lista\n"
+		cout << "1. Añadir elementos\n"
 			"2. Mostrar lista\n"
 			"3. Eliminar lista\n"
 			"4. Salir\n"
@@ -209,7 +220,7 @@ void menu(){
 				nodeGeneration();
 				break;
 			case 2:
-				cout << "IMplementame" << endl;
+				ld.printForward();
 				break;
 			case 3:
 				cout << "Implementame" << endl;
@@ -230,6 +241,8 @@ void menu(){
 }
 
 int main(){
+	cout << "Nota: al agregar nodos, no agregar más de 25 de golpe. "
+		<< "No sé por qué" << endl;
 	srand(time(NULL));
 	menu();
 	return 0;

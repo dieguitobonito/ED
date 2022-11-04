@@ -218,14 +218,15 @@ void LinkedList::removeFront(){
 void LinkedList::printForward(){
 	// Referencia al verdadero
 	// primer dato
-	Node* tmp = header->next;
+	Node* tmp = header->next->next;
 
 	cout << "\n";
 	unsigned int count = 0;
 	while(tmp != trailer){
 		count++;
 		cout << count << ".- ";
-		cout << tmp->data.name << ", " << tmp->data.id << endl;
+		cout << tmp->data.id << ", " << tmp->data.name <<
+			", " << tmp->data.price << endl;
 		tmp = tmp->next;
 	}
 	cout << "\n";
