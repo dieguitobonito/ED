@@ -10,7 +10,6 @@ class LinkedList{
 		void removeFront(void);
 		void printForward(void);
 		void deleteAll(void);
-		void addNode(Producto, unsigned int);
 
 
 	private:

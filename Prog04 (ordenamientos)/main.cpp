@@ -223,7 +223,7 @@ void menu(){
 				ld.printForward();
 				break;
 			case 3:
-				cout << "Implementame" << endl;
+				ld.deleteAll();
 				break;
 			case 4:
 				cout << "Adiós" << endl;
