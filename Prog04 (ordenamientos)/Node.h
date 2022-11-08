@@ -7,6 +7,7 @@ class Node{
 	public:
 		Node();
 		Node(Producto, Node*, Node*);
+		Node(Producto);
 	private:
 		Producto data;
 		Node* next;

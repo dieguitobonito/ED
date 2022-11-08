@@ -6,10 +6,16 @@
 class LinkedList{
 	public:
 		LinkedList();
-		void addFront(Producto);
-		void removeFront(void);
+		void addNode(Producto);
+		void remove(void);
 		void printForward(void);
 		void deleteAll(void);
+
+		void quickSort(LinkedList*);
+		void mergeSort(void);
+		void insertSort(void);
+		void selectSort(void);
+		void bogoSort(void);
 
 
 	private:

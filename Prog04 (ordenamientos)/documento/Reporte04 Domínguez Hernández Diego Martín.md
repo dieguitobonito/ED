@@ -9,6 +9,7 @@ Así como crear nodos automáticamente
 mejor utilizar `<random>`
 * Solo puedo agregar de 50 en 50, qué raro
 * Intentando saber si se puede comparar strings sin tener que capitalizarlos, parece ser que no es posible...?
+* `bad_alloc` ocurre porque la memoria no alcanza, quizá sea porque tengo poquita, dependerá del equipo que ajuste la memoria
 
 Sacando los nombres de los productos de aquí
 **Foto**

@@ -173,7 +173,7 @@ void nodeGeneration(){
 	}
 
 	if(sure){
-		// Todos los generadores de números
+		// Todos los generadores aleatorios
 		random_device semilla;
 		uniform_real_distribution<float> generarPrecio(0.0, 999.999);
 		uniform_int_distribution<unsigned int> generarID(0, 10000);
@@ -183,24 +183,41 @@ void nodeGeneration(){
 			name = names[generarNombre(semilla)];
 			price = generarPrecio(semilla);
 			id = generarID(semilla);
-
 			Producto item(name, price, id);
-
-			ld.addFront(item);
-
-			// cout << item.name << endl;
-			// cout << item.price << endl;
-			// cout << item.id << endl;
-			// cout << endl;
-
-
-			// cout << name << endl;
-			// cout << price << endl;
-			// cout << id << endl;
-			// cout << endl;
-
+			ld.addNode(item);
 		}
 		cout << "\nListo\n" << endl;
+	}
+}
+
+void sorting(){
+	int opcion = 0;
+	cout << "1. Ordenar por id (Quicksort)\n"
+		"2. Ordenar precio (Mergesort)\n"
+		"3. Ordenar por nombre (Insert sort)\n"
+		"4. Ordenar por precio (Select sort)\n"
+		"5. NO ESCOGERME\n"
+		": ";
+	cin >> opcion;
+	
+	switch(opcion){
+		case 1:
+			ld.quickSort(&ld);
+			break;
+		case 2:
+			ld.mergeSort();
+			break;
+		case 3:
+			ld.insertSort();
+			break;
+		case 4:
+			ld.selectSort();
+			break;
+		case 5:
+			ld.bogoSort();
+			break;
+		default:
+			cout << "Opción inválida" << endl;
 	}
 }
 
@@ -208,11 +225,12 @@ void menu(){
 	cout << "--- Ordenamientos ---\n\n";
 
 	int opcion = 0;
-	while(opcion != 4){
+	while(opcion != 5){
 		cout << "1. Añadir elementos\n"
 			"2. Mostrar lista\n"
 			"3. Eliminar lista\n"
-			"4. Salir\n"
+			"4. Ordenar\n"
+			"5. Salir\n"
 			": ";
 		cin >> opcion;
 		switch(opcion){
@@ -226,6 +244,9 @@ void menu(){
 				ld.deleteAll();
 				break;
 			case 4:
+				sorting();
+				break;
+			case 5:
 				cout << "Adiós" << endl;
 				break;
 			default:
@@ -241,7 +262,7 @@ void menu(){
 }
 
 int main(){
-	cout << "Nota: al agregar nodos, no agregar más de 25 de golpe. "
+	cout << "Nota: al agregar nodos, puede que lance bad_alloc, "
 		<< "No sé por qué" << endl;
 	srand(time(NULL));
 	menu();

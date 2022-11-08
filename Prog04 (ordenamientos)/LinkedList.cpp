@@ -16,28 +16,29 @@ LinkedList::LinkedList(){
 	trailer->next = nullptr;
 }
 
-void LinkedList::addFront(Producto a){
-	if(header == nullptr && trailer == nullptr){
-		Node* first = new Node(a, nullptr, nullptr);
-		header = first;
-		trailer = first;
+void LinkedList::addNode(Producto a){
+	// Primer nodo
+	if(!header->next && !trailer->prev){
+		Node* tmp = new Node(a);
+		header->next = tmp;
+		trailer->prev = tmp;
 	}
+	// Resto de nodos
 	else{
-		Node* aux = new Node(a, nullptr, nullptr);
-		Node* tmp = trailer;
-		while(tmp->next){
-			tmp = tmp->next;
-		}
-		tmp->next = aux; 
-		trailer = aux;
+		Node* tmp = new Node(a);
+		Node* tmpTrailer = trailer->prev;
+		tmpTrailer->next = tmp;
+		tmp->prev = tmpTrailer;
+		trailer->prev = tmp;
 	}
 }
 
-void LinkedList::removeFront(){
-	Node* nd = header->next->next;
-	delete header->next;
-	header->next = nd;
-	nd->prev = header;
+void LinkedList::remove(){
+	Node* tmp = header->next;
+	tmp->prev = nullptr;
+	header = tmp;
+	delete tmp;
+
 }
 
 void LinkedList::printForward(){
@@ -46,12 +47,12 @@ void LinkedList::printForward(){
 	if(!header && !trailer)
 		cout << "Lista vacia" << endl;
 	else{
-		Node* tmp = header->next->next;
+		Node* tmp = header->next;
 
 		cout << "\n";
 		cout << "Id, nombre de producto y precio\n" << endl;
 		unsigned int count = 0;
-		while(tmp != trailer){
+		while(tmp){
 			count++;
 			cout << count << ".- ";
 			cout << tmp->data.id << ", " << tmp->data.name <<
@@ -64,9 +65,84 @@ void LinkedList::printForward(){
 }
 
 void LinkedList::deleteAll(void){
-	while(header->next != trailer)
-		removeFront();
 
-	delete header;
-	delete trailer;
+
 }
+
+// Ordenar id
+void LinkedList::quickSort(LinkedList* l){
+	Node* piv;
+	Node* pivSave;
+	Node* aux;
+
+	LinkedList* upper = new LinkedList;
+	LinkedList* lower = new LinkedList;
+
+	if(l->header){
+		piv = l->header;
+		pivSave = new Node(l->header->data);
+		aux = l->header->next;
+
+		while(aux){
+			if(aux->data.id < piv->data.id){
+				lower->addNode(aux->data);
+			}
+			else{
+				upper->addNode(aux->data);
+			}
+			aux = aux->next;
+		}
+	}
+
+	quickSort(lower);
+	quickSort(upper);
+
+	aux = l->header;
+	Node* low = lower->header;
+	while(low){
+		aux->data = low->data;
+		aux = aux->next;
+		low = low->next;
+	}
+	{
+		aux->data = pivSave->data;
+		aux = aux->next;
+	}
+
+	Node* up = upper->header;
+	while(up){
+		aux->data = up->data;
+		aux = aux->next;
+		up = up->next;
+	}
+}
+
+
+void LinkedList::mergeSort(void){
+	cout << "mergeSort" << endl;
+}
+
+void LinkedList::insertSort(void){
+	cout << "insertSort" << endl;
+}
+
+void LinkedList::selectSort(void){
+	cout << "selectSort" << endl;
+}
+
+void LinkedList::bogoSort(void){
+	cout << "JAJAJAJJAJAJAJAJAJJAJAJA" << endl;
+}
+
+// void LinkedList::insert(Producto a){
+// 	Node* tmp = new Node(a);
+// 	if(header && trailer){
+// 		tmp->next = header;
+// 		header->prev = tmp;
+// 		header = tmp;
+// 	}
+// 	else{
+// 		header = tmp;
+// 		trailer = tmp;
+// 	}
+// }
