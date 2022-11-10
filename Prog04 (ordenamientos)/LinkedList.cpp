@@ -60,8 +60,24 @@ void LinkedList::printForward(){
 			tmp = tmp->next;
 		}
 	}
-	
+
 	cout << "\n";
+}
+
+void LinkedList::swapNodes(Node* a, Node* b){
+	Node* savedData;
+
+	savedData->data.id = b->data.id;
+	savedData->data.name = b->data.name;
+	savedData->data.price = b->data.price;
+
+	b->data.id = a->data.id;
+	b->data.name = a->data.name;
+	b->data.price = a->data.price;
+
+	a->data.id = savedData->data.id;
+	a->data.name = savedData->data.name;
+	a->data.price = savedData->data.price;
 }
 
 void LinkedList::deleteAll(void){
@@ -69,56 +85,41 @@ void LinkedList::deleteAll(void){
 
 }
 
-// Ordenar id
-void LinkedList::quickSort(LinkedList* l){
-	Node* piv;
-	Node* pivSave;
-	Node* aux;
+int LinkedList::size(LinkedList* l){
+	int quantity = 0;
+	Node* tmp = l->header;
+	while(tmp->next){
+		++quantity;
+		tmp = tmp->next;
+	}
+	return quantity;
+}
 
-	LinkedList* upper = new LinkedList;
-	LinkedList* lower = new LinkedList;
+void LinkedList::bubbleSort(LinkedList* l){
+	Node* tmp = l->header->next;
 
-	if(l->header){
-		piv = l->header;
-		pivSave = new Node(l->header->data);
-		aux = l->header->next;
+	int nodes = size(l);
+	int i = 0;
 
-		while(aux){
-			if(aux->data.id < piv->data.id){
-				lower->addNode(aux->data);
+	while(i < nodes - 1){
+		while(tmp->next){
+			if(tmp->data.id > tmp->next->data.id){
+				swapNodes(tmp, tmp->next);
 			}
-			else{
-				upper->addNode(aux->data);
-			}
-			aux = aux->next;
+			tmp = tmp->next;
 		}
-	}
-
-	quickSort(lower);
-	quickSort(upper);
-
-	aux = l->header;
-	Node* low = lower->header;
-	while(low){
-		aux->data = low->data;
-		aux = aux->next;
-		low = low->next;
-	}
-	{
-		aux->data = pivSave->data;
-		aux = aux->next;
-	}
-
-	Node* up = upper->header;
-	while(up){
-		aux->data = up->data;
-		aux = aux->next;
-		up = up->next;
+		tmp = l->header->next;
+		i++;
 	}
 }
 
+// Ordenar id
+void LinkedList::quickSort(LinkedList* l){
 
-void LinkedList::mergeSort(void){
+}
+
+
+void LinkedList::mergeSort(unsigned int size, LinkedList* l){
 	cout << "mergeSort" << endl;
 }
 
@@ -126,8 +127,23 @@ void LinkedList::insertSort(void){
 	cout << "insertSort" << endl;
 }
 
-void LinkedList::selectSort(void){
-	cout << "selectSort" << endl;
+void LinkedList::selectSort(LinkedList* l){
+	Node* aux = l->header->next;
+	Node* menor = l->header->next;
+	Node* pos = l->header->next;
+
+	while(pos->next){
+		aux = pos;
+		menor = pos;
+		while(aux->next){
+			if(menor->data.price < aux->data.price){
+				menor = aux;
+			}
+			aux = aux->next;
+		}
+		swapNodes(menor, pos);
+		pos = pos->next;
+	}
 }
 
 void LinkedList::bogoSort(void){

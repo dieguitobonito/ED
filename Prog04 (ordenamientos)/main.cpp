@@ -199,22 +199,24 @@ void sorting(){
 		"5. NO ESCOGERME\n"
 		": ";
 	cin >> opcion;
+
+	cout << "Listo" << endl;
 	
 	switch(opcion){
 		case 1:
 			ld.quickSort(&ld);
 			break;
 		case 2:
-			ld.mergeSort();
+			ld.mergeSort(5, &ld);
 			break;
 		case 3:
 			ld.insertSort();
 			break;
 		case 4:
-			ld.selectSort();
+			ld.selectSort(&ld);
 			break;
 		case 5:
-			ld.bogoSort();
+			ld.bubbleSort(&ld);
 			break;
 		default:
 			cout << "Opción inválida" << endl;

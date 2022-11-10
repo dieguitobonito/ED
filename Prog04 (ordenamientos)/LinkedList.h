@@ -11,11 +11,14 @@ class LinkedList{
 		void printForward(void);
 		void deleteAll(void);
 
+		int size(LinkedList*);
+		void bubbleSort(LinkedList*);
 		void quickSort(LinkedList*);
-		void mergeSort(void);
+		void mergeSort(unsigned int, LinkedList*);
 		void insertSort(void);
-		void selectSort(void);
+		void selectSort(LinkedList*);
 		void bogoSort(void);
+		void swapNodes(Node*, Node*);
 
 
 	private:
