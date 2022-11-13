@@ -13,3 +13,15 @@ mejor utilizar `<random>`
 
 Sacando los nombres de los productos de aquí
 **Foto**
+
+Otro problema surgió de la asignación automática de nodos; no es posible
+ordenar con cantidades mayores a 50 nodos, me lanza
+```
+free():invalid size
+aborted (core dumped)
+	```
+Parece ser que el error se da porque no coloco un cout dentro del ciclo,
+	quizá porque se agobia por mover muchas direcciones de memoria...?
+
+	En insertsort si no coloco couts todo se va a la ñonga por alguna razón, la lista no se ordena
+	Yo creo que es por mal manejo de la memoria en el programa

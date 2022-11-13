@@ -200,23 +200,23 @@ void sorting(){
 		": ";
 	cin >> opcion;
 
-	cout << "Listo" << endl;
-	
 	switch(opcion){
 		case 1:
 			ld.quickSort(&ld);
 			break;
 		case 2:
-			ld.mergeSort(5, &ld);
+			cout << "Ordenando por precio..." << endl;
+			ld.mergeSort(ld.size(&ld), &ld);
+			cout << "Listo" << endl;
 			break;
 		case 3:
-			ld.insertSort();
+			ld.insertSort(&ld);
 			break;
 		case 4:
 			ld.selectSort(&ld);
 			break;
 		case 5:
-			ld.bubbleSort(&ld);
+			ld.bogoSort(&ld);
 			break;
 		default:
 			cout << "Opción inválida" << endl;
