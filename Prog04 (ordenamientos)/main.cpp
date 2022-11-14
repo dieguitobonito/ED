@@ -140,7 +140,7 @@ void nodeGeneration(){
 	"Men’s Formalwear Bowtie",
 };
 
-	unsigned int quantity = 0;
+unsigned int quantity = 0;
 	cout << "¿Cuántos elementos quieres generar?\n: ";
 	cin >> quantity;
 
@@ -196,13 +196,14 @@ void sorting(){
 		"2. Ordenar precio (Mergesort)\n"
 		"3. Ordenar por nombre (Insert sort)\n"
 		"4. Ordenar por precio (Select sort)\n"
-		"5. NO ESCOGERME\n"
 		": ";
 	cin >> opcion;
 
 	switch(opcion){
 		case 1:
+			cout << "Ordenando por id..." << endl;
 			ld.quickSort(&ld);
+			cout << "Listo" << endl;
 			break;
 		case 2:
 			cout << "Ordenando por precio..." << endl;
@@ -215,9 +216,6 @@ void sorting(){
 		case 4:
 			ld.selectSort(&ld);
 			break;
-		case 5:
-			ld.bogoSort(&ld);
-			break;
 		default:
 			cout << "Opción inválida" << endl;
 	}
@@ -227,12 +225,11 @@ void menu(){
 	cout << "--- Ordenamientos ---\n\n";
 
 	int opcion = 0;
-	while(opcion != 5){
+	while(opcion != 4){
 		cout << "1. Añadir elementos\n"
 			"2. Mostrar lista\n"
-			"3. Eliminar lista\n"
-			"4. Ordenar\n"
-			"5. Salir\n"
+			"3. Ordenar\n"
+			"4. Salir\n"
 			": ";
 		cin >> opcion;
 		switch(opcion){
@@ -243,12 +240,9 @@ void menu(){
 				ld.printForward();
 				break;
 			case 3:
-				ld.deleteAll();
-				break;
-			case 4:
 				sorting();
 				break;
-			case 5:
+			case 4:
 				cout << "Adiós" << endl;
 				break;
 			default:
@@ -259,13 +253,11 @@ void menu(){
 	string menu_name;
 	unsigned int menu_age;
 	bool vaxio = false;
-
 	unsigned int option;
 }
 
 int main(){
-	cout << "Nota: al agregar nodos, puede que lance bad_alloc, "
-		<< "No sé por qué" << endl;
+	cout << "Nota: al agregar nodos, puede que lance bad_alloc, ten en cuenta cuánta memoria tiene tu equipo" << endl;
 	srand(time(NULL));
 	menu();
 	return 0;

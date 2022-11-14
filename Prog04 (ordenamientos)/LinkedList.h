@@ -7,9 +7,7 @@ class LinkedList{
 	public:
 		LinkedList();
 		void addNode(Producto);
-		void remove(void);
 		void printForward(void);
-		void deleteAll(void);
 
 		unsigned int size(LinkedList*);
 		void bubbleSort(LinkedList*);
@@ -17,7 +15,6 @@ class LinkedList{
 		void mergeSort(unsigned int, LinkedList*);
 		void insertSort(LinkedList*);
 		void selectSort(LinkedList*);
-		void bogoSort(LinkedList*);
 		void swapNodes(Node*, Node*);
 
 

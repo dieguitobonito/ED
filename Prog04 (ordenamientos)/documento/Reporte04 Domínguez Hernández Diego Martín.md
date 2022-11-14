@@ -25,3 +25,5 @@ Parece ser que el error se da porque no coloco un cout dentro del ciclo,
 
 	En insertsort si no coloco couts todo se va a la ñonga por alguna razón, la lista no se ordena
 	Yo creo que es por mal manejo de la memoria en el programa
+
+	En quicksort hubo que adaptarlo bastante

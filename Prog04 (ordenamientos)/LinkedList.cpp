@@ -33,13 +33,6 @@ void LinkedList::addNode(Producto a){
 	}
 }
 
-void LinkedList::remove(){
-	Node* tmp = header->next;
-	tmp->prev = nullptr;
-	header = tmp;
-	delete tmp;
-}
-
 void LinkedList::printForward(){
 	// Referencia al verdadero
 	// primer dato
@@ -59,7 +52,6 @@ void LinkedList::printForward(){
 			tmp = tmp->next;
 		}
 	}
-
 	cout << "\n";
 }
 
@@ -79,10 +71,6 @@ void LinkedList::swapNodes(Node* a, Node* b){
 	a->data.price = savedData->data.price;
 }
 
-void LinkedList::deleteAll(void){
-
-
-}
 
 unsigned int LinkedList::size(LinkedList* l){
 	unsigned quantity = 0;
@@ -114,7 +102,58 @@ void LinkedList::bubbleSort(LinkedList* l){
 
 // Ordenar id
 void LinkedList::quickSort(LinkedList* l){
+	Node* pivot;
+	Node* tmp;
+	
+	LinkedList* upper = new LinkedList();
+	LinkedList* lower = new LinkedList();
 
+	if(l->size(l) > 1){
+		pivot = l->header->next;
+		Node* savedPivot = new Node(pivot->data);
+		tmp = pivot->next;
+
+		while(tmp){
+			if(tmp->data.id < pivot->data.id){
+				lower->addNode(tmp->data);
+			}
+			else{
+				upper->addNode(tmp->data);
+			}
+			tmp = tmp->next;
+		}
+
+		quickSort(lower);
+		quickSort(upper);
+
+		// Elementos menores
+		tmp = l->header->next;
+		Node* left = lower->header->next;
+
+		// Acomodando la lista original con la sublista ordenada
+		// Como esto se hace recursivamente, lo que nos importa
+		// es la sublista principal que ya estará ordenada
+		// left->data.name != "" porque hay unos nodos inicializados vacíos,
+		// los evito con eso
+		while(left && tmp && left->data.name != ""){
+			tmp->data = left->data;
+			tmp = tmp->next;
+			left = left->next;
+		}
+
+		tmp->data = savedPivot->data;
+		tmp = tmp->next;
+
+		// Elementos mayores
+		Node* right = upper->header->next;
+
+		// Lo mismo pasará con la sublista de elementos mayores
+		while(right && tmp && right->data.name != ""){
+			tmp->data = right->data;
+			tmp = tmp->next;
+			right = right->next;
+		}
+	}
 }
 
 // Ordenar precio
@@ -238,9 +277,4 @@ void LinkedList::selectSort(LinkedList* l){
 		pos = pos->next;
 	}
 	cout << "Listo" << endl;
-}
-
-void LinkedList::bogoSort(LinkedList* l){
-	cout << "Lista: " << l << endl;
-	cout << "JAJAJAJJAJAJAJAJAJJAJAJA" << endl;
 }
